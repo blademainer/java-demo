@@ -20,8 +20,8 @@
         </rollingPolicy>  
         <encoder>  
             <pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80} - %msg%n</pattern>
-        </encoder>>  
-    </appender>  
+        </encoder>>
+    </appender>
     <logger name="com.xiongyingqi" level="DEBUG"/>
     <root level="ERROR">
         <appender-ref ref="console"/>
