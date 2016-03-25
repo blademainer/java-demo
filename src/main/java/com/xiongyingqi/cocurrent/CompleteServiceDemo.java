@@ -17,7 +17,9 @@ public class CompleteServiceDemo {
             queue);
     CompletionService<Integer> cs         = new ExecutorCompletionService<Integer>(threadPool);
 
+
     private void completeServiceDemo() throws InterruptedException, ExecutionException {
+
         //        ExecutorService threadPool = new ThreadPoolExecutor(40, 40, 2L, TimeUnit.SECONDS, new SynchronousQueue<>());
         for (int i = 0; i < 10000; i++) {
             final int taskID = i;
@@ -36,7 +38,7 @@ public class CompleteServiceDemo {
                 for (Future<Integer> take = cs.poll(10, TimeUnit.SECONDS);
                      take != null; take = cs.poll(10, TimeUnit.SECONDS)) {
                     take.get();
-//                    System.out.println(take.get());
+                    //                    System.out.println(take.get());
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -59,14 +61,13 @@ public class CompleteServiceDemo {
         }, "monitor thread");
         thread2.start();
 
-
         List<Thread> threads = new ArrayList<>();
         threads.add(thread);
         threads.add(thread2);
         new Thread(() -> {
             while (true) {
                 threads.forEach((x) -> {
-//                    System.out.println(String.format("id: %d, name: %s, state: %s", x.getId(), x.getName(), x.getState()));
+                    //                    System.out.println(String.format("id: %d, name: %s, state: %s", x.getId(), x.getName(), x.getState()));
                     ObjectMapper mapper = new ObjectMapper();
                     try {
                         System.out.println(mapper.writeValueAsString(x));

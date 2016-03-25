@@ -29,6 +29,7 @@
         <jackson.version>2.4.2</jackson.version>
         <hibernate.validator.version>4.3.1.Final</hibernate.validator.version>
         <common_utils.version>0.1.10</common_utils.version>
+        <mockito.version>1.10.19</mockito.version>
         <docker.registry></docker.registry>
     </properties>
 
@@ -86,6 +87,10 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
         </dependency>
     </dependencies>
 
@@ -293,6 +298,13 @@
                 <artifactId>aspectjweaver</artifactId>
                 <version>${aspectj.version}</version>
                 <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
