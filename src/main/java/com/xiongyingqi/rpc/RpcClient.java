@@ -69,7 +69,8 @@ public class RpcClient {
             client.start("127.0.0.1", 6666);
             AService aService = client.ref(AService.class);
             for (int i = 0; i < 100; i++) {
-                aService.say("hello! " + i);
+                boolean say = aService.say("hello! " + i);
+                System.out.println(say);
             }
         } catch (IOException e) {
             e.printStackTrace();

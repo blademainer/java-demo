@@ -6,7 +6,8 @@ package com.xiongyingqi.rpc;
  */
 public class AServiceImpl implements AService {
     @Override
-    public void say(String word) {
+    public boolean say(String word) {
         System.out.println("AServiceImpl... say: " + word);
+        return true;
     }
 }

@@ -5,5 +5,5 @@ package com.xiongyingqi.rpc;
  * @version 2016-04-08 18:19
  */
 public interface AService {
-    void say(String word);
+    boolean say(String word);
 }
