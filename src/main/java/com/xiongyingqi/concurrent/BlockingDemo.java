@@ -1,4 +1,4 @@
-package com.xiongyingqi.cocurrent;
+package com.xiongyingqi.concurrent;
 
 import java.util.*;
 import java.util.concurrent.locks.*;

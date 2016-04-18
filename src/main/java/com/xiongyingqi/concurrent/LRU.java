@@ -1,4 +1,4 @@
-package com.xiongyingqi.cocurrent;
+package com.xiongyingqi.concurrent;
 
 /**
  * @author <a href="http://xiongyingqi.com">qi</a>

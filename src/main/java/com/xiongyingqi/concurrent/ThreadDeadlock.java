@@ -1,4 +1,4 @@
-package com.xiongyingqi.cocurrent;
+package com.xiongyingqi.concurrent;
 
 public class ThreadDeadlock {
 
