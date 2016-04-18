@@ -49,7 +49,7 @@ public class BinarySearch {
         Random random = new Random();
         int next = 0;
         for (int i = 0; i < length; i++) {
-            next = next + random.nextInt(maxInterval);
+            next = next + random.nextInt(maxInterval) + maxInterval;
             array[i] = next;
         }
         return array;
