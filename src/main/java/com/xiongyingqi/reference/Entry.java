@@ -1,12 +1,12 @@
-package com.xiongyingqi.refrence;
+package com.xiongyingqi.reference;
 
 /**
  * @author xiongyingqi
  * @version 2016-03-25 16:54
  */
-public class Entry {
+public class Entry<T> {
     private String key;
-    private String value;
+    private T value;
 
     public String getKey() {
         return key;
@@ -16,11 +16,11 @@ public class Entry {
         this.key = key;
     }
 
-    public String getValue() {
+    public T getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(T value) {
         this.value = value;
     }
 }
