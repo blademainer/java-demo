@@ -48,42 +48,10 @@ public class MockTest extends MockBaseTest {
 
 }
 
-interface UserDao {
-    void setUserId(String userId);
-}
 
-class UserDaoImpl implements UserDao {
-    private String userId;
 
-    @Override
-    public void setUserId(String userId) {
-        System.out.println(getClass().getSimpleName() + "#setUserId=" + userId);
-        this.userId = userId;
-    }
-}
 
-interface UserService {
-    void setUserId(String userId);
-}
 
-class UserServiceImpl implements UserService {
-    private String  userId;
-    private UserDao userRepository;
 
-    @Override
-    public void setUserId(String userId) {
-        userRepository.setUserId(userId);
-    }
 
-    public String getUserId() {
-        return userId;
-    }
 
-    public void setUserRepository(UserDao userRepository) {
-        this.userRepository = userRepository;
-    }
-}
-
-class Hello{
-
-}

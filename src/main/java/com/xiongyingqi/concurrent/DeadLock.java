@@ -5,6 +5,29 @@ package com.xiongyingqi.concurrent;
  * @version 2016-04-18 18:49
  */
 public class DeadLock {
+
+    public static void lockByThree() {
+        LockThree a = new LockThree();
+        LockThree b = new LockThree();
+        new Thread(() -> {
+            a.tryLock(b);
+        }).start();
+        new Thread(() -> {
+            b.tryLock(a);
+        }).start();
+    }
+
+    public static void lockByTwo() {
+        LockTwo a = new LockTwo();
+        LockTwo b = new LockTwo();
+        new Thread(() -> {
+            a.tryLock(b);
+        }).start();
+        new Thread(() -> {
+            b.tryLock(a);
+        }).start();
+    }
+
     public static void main(String[] args) {
         //        LockOne o = new LockOne();
         //        LockOne t = new LockOne();
@@ -15,14 +38,7 @@ public class DeadLock {
         //            t.tryLock(o);
         //        }).start();
 
-        LockTwo a = new LockTwo();
-        LockTwo b = new LockTwo();
-        new Thread(() -> {
-            a.tryLock(b);
-        }).start();
-        new Thread(() -> {
-            b.tryLock(a);
-        }).start();
+        lockByTwo();
 
     }
 }
@@ -54,6 +70,7 @@ class LockTwo {
     }
 
     public synchronized void tryLock(LockTwo o) {
+        System.out.println("try lock... " + this);
         synchronized (this) {
             System.out.println("try lock " + o + " thread: " + Thread.currentThread());
             try {
@@ -68,9 +85,35 @@ class LockTwo {
     }
 
     public synchronized void action() {
+        System.out.println("try lock... " + this);
         synchronized (this) {
             System.out.println("action...  thread: " + Thread.currentThread());
         }
+    }
+
+}
+
+class LockThree {
+
+    public LockThree() {
+    }
+
+    public synchronized void tryLock(Object o) {
+        System.out.println("try lock... " + getClass());
+        synchronized (toString().intern()) {
+            System.out.println("try lock " + o + " thread: " + Thread.currentThread());
+            try {
+                Thread.sleep(100L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("try lock... " + o.getClass());
+            synchronized (o.toString().intern()) {
+                System.out.println("action...  thread: " + Thread.currentThread());
+            }
+        }
+
+        //        o.action();
     }
 
 }
