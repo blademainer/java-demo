@@ -37,6 +37,17 @@ public class ConcurrentBlockingSubmit<T> {
     private void submit() {
         Future<Boolean> submit = executorService.submit(() -> {
             T data = getData();
+            if (data == null) {
+                return false;
+            }
+            System.out.println("executing data: " + data);
+            //                Thread.sleep(1L);
+            return true;
+        });
+        completeQueue.add(submit);
+    }
+    private void submit(T data) {
+        Future<Boolean> submit = executorService.submit(() -> {
             System.out.println("executing data: " + data);
             //                Thread.sleep(1L);
             return true;
@@ -58,7 +69,8 @@ public class ConcurrentBlockingSubmit<T> {
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     }
-                    submit();
+                    T data = getData();
+                    submit(data);
                 }
 
             }
