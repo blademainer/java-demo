@@ -6,4 +6,5 @@ package com.xiongyingqi.concurrent.blocking.submit;
  */
 public interface Producer<T> {
     T produce();
+    boolean hasMore();
 }
