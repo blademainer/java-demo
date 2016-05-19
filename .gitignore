@@ -11,6 +11,7 @@ buildNumber.properties
 logs/
 ### Linux template
 *~
+*.log
 
 # KDE directory preferences
 .directory

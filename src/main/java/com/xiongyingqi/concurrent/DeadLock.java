@@ -1,5 +1,7 @@
 package com.xiongyingqi.concurrent;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @author xiongyingqi
  * @version 2016-04-18 18:49
@@ -27,6 +29,15 @@ public class DeadLock {
             b.tryLock(a);
         }).start();
     }
+    public static void lockByFour() {
+        LockFour a = new LockFour();
+        new Thread(() -> {
+            a.lockOne();
+        }).start();
+        new Thread(() -> {
+            a.lockTwo();
+        }).start();
+    }
 
     public static void main(String[] args) {
         //        LockOne o = new LockOne();
@@ -38,7 +49,8 @@ public class DeadLock {
         //            t.tryLock(o);
         //        }).start();
 
-        lockByTwo();
+//        lockByTwo();
+        lockByFour();
 
     }
 }
@@ -116,4 +128,44 @@ class LockThree {
         //        o.action();
     }
 
+}
+
+class LockFour {
+    static ReentrantLock lockOne = new ReentrantLock();
+    static ReentrantLock lockTwo = new ReentrantLock();
+    public void lockOne() {
+        lockOne.lock();
+        try {
+            Thread.sleep(100L);
+            lockTwo.lock();
+            try {
+                System.out.println("not a dead lock!");
+            }finally {
+                lockTwo.unlock();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lockOne.unlock();
+        }
+    }
+
+    public void lockTwo() {
+        lockTwo.lock();
+        try {
+            try {
+                Thread.sleep(100L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            lockOne.lock();
+            try {
+                System.out.println("not a dead lock!");
+            }finally {
+                lockOne.unlock();
+            }
+        } finally {
+            lockTwo.unlock();
+        }
+    }
 }
