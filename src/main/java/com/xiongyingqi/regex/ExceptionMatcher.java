@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  * Created by xiongyingqi on 16-5-26.
  */
 public class ExceptionMatcher {
-    public static final String  regex   = "Caused\\sby:\\s.*\\n+(\\s+at\\s+.*?\\n+)*";
+    public static final String  regex   = "Caused\\sby:\\s.*?\\n+(\\s*at\\s+.*?\\n+)*";
     public static final Pattern PATTERN = Pattern.compile(regex, Pattern.MULTILINE);
 
     static {
@@ -25,7 +25,7 @@ public class ExceptionMatcher {
         System.out.println(test);
         Matcher matcher = PATTERN.matcher(test);
         if (matcher.find()) {
-            System.out.println("find====" + matcher.group());
+            System.out.println("find: \n" + matcher.group());
         }
     }
 }
