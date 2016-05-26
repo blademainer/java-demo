@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
  * Created by xiongyingqi on 16-5-26.
  */
 public class ExceptionMatcher {
-    public static final String  regex   = "Caused\\sby:\\s.*?\\n+(\\s*at\\s+.*?\\n+)*";
-    public static final Pattern PATTERN = Pattern.compile(regex, Pattern.MULTILINE);
+    public static final String  regex   = "Caused\\sby:\\s.*?[\\n\\r]+(\\s*at\\s+.*?[\\n\\r]+)*";
+    public static final Pattern PATTERN = Pattern.compile(regex, Pattern.DOTALL);
 
     static {
     }
