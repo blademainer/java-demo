@@ -43,27 +43,33 @@ public class BlockingTaskScheduler<T> {
     //        }
     //    }
 
+    Callable<Boolean> callable = new Callable<Boolean>() {
+        @Override
+        public Boolean call() throws Exception {
+            if (!producer.hasMore()) {
+                System.out.println("no more data to be consume...");
+                notifyNoMoreData();
+                return false;
+            }
+            T data = producer.produce();
+            if (data == null) {
+                return false;
+            }
+            notifySubmitted(data);
+            consumer.consume(data);
+            submit();
+            return true;
+        }
+    };
+
     private Future<Boolean> submit() {
+        Future<Boolean> submit = submit(callable);
+        return submit;
+    }
+    private Future<Boolean> submit(Callable<Boolean> callable) {
         ThreadPoolExecutor executorService = threadPoolContainer.getExecutorService();
 
-        Future<Boolean> submit = executorService.submit(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                if (!producer.hasMore()) {
-                    System.out.println("no more data to be consume...");
-                    notifyNoMoreData();
-                    return false;
-                }
-                T data = producer.produce();
-                if (data == null) {
-                    return false;
-                }
-                notifySubmitted(data);
-                consumer.consume(data);
-                submit();
-                return true;
-            }
-        });
+        Future<Boolean> submit = executorService.submit(callable);
         return submit;
     }
 
