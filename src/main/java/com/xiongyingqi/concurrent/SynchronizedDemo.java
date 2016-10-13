@@ -29,7 +29,7 @@ public class SynchronizedDemo {
         }
     }
 
-    public static <T, R> R runByLock(String lock, Function<T, R> function, T t) {
+    public static <T, R> R runByLock(Object lock, Function<T, R> function, T t) {
         synchronized (lock) {
             R apply = function.apply(t);
             return apply;

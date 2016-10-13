@@ -14,9 +14,9 @@ public class SynchronizedDemoTest {
         int threadSize = 10;
         int loopSize = 1000;
 
-        String[] locks = new String[threadSize];
+        Object[] locks = new Object[threadSize];
         for (int i = 0; i < threadSize; i++) {
-            String lock = i + "";
+            Object lock = new Object();
             locks[i] = lock;
         }
 
@@ -35,7 +35,7 @@ public class SynchronizedDemoTest {
                 Thread thread = new Thread(() -> {
                     for (int i1 = 0; i1 < loopSize; i1++) {
 
-                        String lock = locks[finalI];
+                        Object lock = locks[finalI];
                         SynchronizedDemo.runByLock(lock, integer -> {
                             sum[integer]++;
                             //                            System.out.println(integer + "==" + sum[integer]);
