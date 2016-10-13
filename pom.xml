@@ -310,7 +310,7 @@
     </dependencyManagement>
 
     <build>
-        <defaultGoal>clean install package -DskipTests</defaultGoal>
+        <defaultGoal>clean install validate -P dev -DskipValidates=false -DskipTests=false</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -435,6 +435,11 @@
                             </goals>
                         </execution>
                     </executions>
+                    <configuration>
+                        <excludes>
+                            <exclude>com.xiongyingqi.loader.ClassLoaderDemo</exclude>
+                        </excludes>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

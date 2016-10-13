@@ -1,7 +1,6 @@
 package com.xiongyingqi.loader;
 
 import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * @author <a href="http://xiongyingqi.com">qi</a>
@@ -9,7 +8,7 @@ import org.junit.Test;
  */
 public class ClassLoaderDemoTest {
 
-    @Test
+//    @Test
     public void testInvokeApplicationCotextMethod() throws Exception {
         Class service = ClassLoaderDemo.loadClass("com.xiongyingqi.loader.UserService");
         Object userService = ClassLoaderDemo.invokeApplicationContextMethod("getBean",
