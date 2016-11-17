@@ -10,7 +10,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @since 16-11-17 上午10:07
  */
 public class UnsafeDemo {
-    private static final AtomicBoolean FROM = new AtomicBoolean();
 
     public static Unsafe getUnsafe() {
         try {
