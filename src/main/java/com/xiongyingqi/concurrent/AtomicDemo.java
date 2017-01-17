@@ -9,6 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class AtomicDemo {
     private int max;
     private AtomicInteger atomicMax = new AtomicInteger();
+    private AtomicInteger atomicInteger = new AtomicInteger();
+    private int anInt = 0;
 
     private int unsafeSetMax(int value) {
         if (value > max) {
@@ -26,6 +28,16 @@ public class AtomicDemo {
             boolean b = atomicMax.compareAndSet(max, value);
             if (b) {
                 return value;
+            }
+        }
+    }
+
+    private void increase(){
+        int i = anInt;
+        while (true){
+            int match = atomicInteger.get();
+            if(atomicInteger.compareAndSet(match, match + 1)){
+                anInt = i + 1;
             }
         }
     }

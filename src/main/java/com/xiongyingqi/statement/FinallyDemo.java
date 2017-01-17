@@ -18,6 +18,7 @@ public class FinallyDemo {
     }
     public static void main(String[] args){
         justDoFinally(true);
+        System.out.println("=============================");
         justDoFinally(false);
     }
 
