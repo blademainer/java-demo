@@ -8,7 +8,7 @@ public class FinallyDemo {
     public static void justDoFinally(boolean justReturn) {
         try {
             System.out.println("try...");
-            if(justReturn){
+            if (justReturn) {
                 return;
             }
             System.out.println("not returned...");
@@ -16,10 +16,20 @@ public class FinallyDemo {
             System.out.println("finally...");
         }
     }
-    public static void main(String[] args){
+
+    public static int finallyReturn(int i) {
+        try {
+            return i;
+        } finally {
+            return i + 1;
+        }
+    }
+
+    public static void main(String[] args) {
         justDoFinally(true);
         System.out.println("=============================");
         justDoFinally(false);
+        System.out.println(finallyReturn(1));
     }
 
 }
