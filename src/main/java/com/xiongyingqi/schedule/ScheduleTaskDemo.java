@@ -1,7 +1,6 @@
 package com.xiongyingqi.schedule;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author xiongyingqi
@@ -32,7 +31,24 @@ public class ScheduleTaskDemo implements Runnable {
     }
 
     public static void main(String[] args) {
-        Executors.newScheduledThreadPool(1).scheduleWithFixedDelay(new ScheduleTaskDemo(), 0, 1,
-                                                                   TimeUnit.MILLISECONDS);
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+        ScheduledFuture<?> scheduledFuture = scheduledExecutorService.scheduleWithFixedDelay(new
+                ScheduleTaskDemo(), 0, 1,
+            TimeUnit.MILLISECONDS);
+        new Thread(){
+            @Override
+            public void run() {
+                while (!scheduledFuture.isDone()) {
+                    System.out.println(scheduledFuture.isDone()); // should be true when task
+                    // throws exception
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println("Task is done: " + scheduledFuture.isDone());
+            }
+        }.start();
     }
 }
