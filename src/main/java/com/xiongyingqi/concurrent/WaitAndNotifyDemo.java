@@ -20,8 +20,9 @@ public class WaitAndNotifyDemo {
             synchronized (full) {
                 isFull = true;
                 try {
-                    System.out.println("full...");
-                    full.wait(100L);
+                    System.out.println("queue fulled...so waiting to read...");
+                    full.wait();
+                    System.out.println("Queue not full!! Continue push.");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -49,10 +50,11 @@ public class WaitAndNotifyDemo {
                 isEmpty = true;
                 System.out.println("empty...");
                 try {
-                    empty.wait(100L);
+                    empty.wait();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                System.out.println("Queue not empty!! Continue pull.");
             }
         }
 
