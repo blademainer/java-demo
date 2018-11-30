@@ -2,6 +2,7 @@ package com.xiongyingqi.generic;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Map;
 
 /**
  * @author xiongyingqi
@@ -16,14 +17,23 @@ public class GenericDemo {
             this.type = (Class<T>) getClass();
         }
 
+        public void getGenericType(){
+            Type mySuperClass = getClass().getGenericSuperclass();
+            Type type = ((ParameterizedType) mySuperClass).getActualTypeArguments()[0];
+            Class clazz = (Class) type;
+            System.out.println(clazz);
+        }
+
     }
 
     public static void main(String[] args) {
 
-        Foo<String> foo = new Foo<String>() {
+        Foo<Map<String, String>> foo = new Foo<Map<String, String>>() {
         };
-        Type mySuperClass = foo.getClass().getGenericSuperclass();
-        Type type = ((ParameterizedType) mySuperClass).getActualTypeArguments()[0];
-        System.out.println(type);
+//        Type mySuperClass = foo.getClass().getGenericSuperclass();
+//        Type type = ((ParameterizedType) mySuperClass).getActualTypeArguments()[0];
+//        Class clazz = (Class<String>) type;
+//        System.out.println(clazz);
+        foo.getGenericType();
     }
 }
