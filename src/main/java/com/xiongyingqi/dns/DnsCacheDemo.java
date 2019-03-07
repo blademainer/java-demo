@@ -11,6 +11,14 @@ import java.net.URLConnection;
  */
 public class DnsCacheDemo {
     public static void main(String[] args) throws InterruptedException {
+        // run this java with jvm args:
+        // -Dnetworkaddress.cache.ttl=10
+        // throws: java.net.UnknownHostException: UnknownHost
+        // run after 10 seconds...
+        // then:
+        // echo "127.0.0.1 UnknownHost" >> /etc/hosts
+        // maybe happens:  Connection refused (dns cache cleared)
+
         String urlStr = "http://UnknownHost";
         if (args.length > 0) {
             System.err.println("No parameter input! so use domain: UnknownHost");
