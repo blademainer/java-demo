@@ -10,6 +10,22 @@ import java.util.Date;
  * @version 2016-01-26 15:30
  */
 public class DateUtil {
+
+    public static String getRFCTime() {
+        String date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date());
+        return date;
+    }
+
+    public static String getRFC3339Time() {
+        String date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").format(new Date());
+        return date;
+    }
+
+    public static String getRFC3339NumericTime() {
+        String date = new SimpleDateFormat("yyyyMMddHHmmssZ").format(new Date());
+        return date;
+    }
+
     /**
      * 返回当天的前一天
      *
@@ -43,5 +59,8 @@ public class DateUtil {
         System.out.println("getYesterday: " + yesterday);
         String getYesterdayOfYear = getYesterdayOfYear(firstDayOfYear);
         System.out.println("getYesterdayOfYear: " + getYesterdayOfYear);
+        System.out.println("getRFCTime: " + getRFCTime());
+        System.out.println("getRFC3339Time: " + getRFC3339Time());
+        System.out.println("getRFC3339NumericTime: " + getRFC3339NumericTime());
     }
 }
