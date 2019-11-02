@@ -30,7 +30,7 @@
         <junit.version>4.11</junit.version>
         <hamcrest.version>1.3</hamcrest.version>
         <dbservice.version>1.0.0-SNAPSHOT</dbservice.version>
-        <jackson.version>2.7.3</jackson.version>
+        <jackson.version>2.10.0</jackson.version>
         <hibernate.validator.version>4.3.1.Final</hibernate.validator.version>
         <common_utils.version>0.1.10</common_utils.version>
         <mockito.version>1.10.19</mockito.version>
