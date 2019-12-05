@@ -25,11 +25,21 @@ public class FinallyDemo {
         }
     }
 
+    public static int finallyReturn2(int i) {
+        try {
+            return i;
+        } finally {
+            System.out.println(i);
+            i++;
+        }
+    }
+
     public static void main(String[] args) {
         justDoFinally(true);
         System.out.println("=============================");
         justDoFinally(false);
         System.out.println(finallyReturn(1));
+        System.out.println(finallyReturn2(1));
     }
 
 }
