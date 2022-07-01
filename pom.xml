@@ -35,7 +35,7 @@
         <common_utils.version>0.1.10</common_utils.version>
         <mockito.version>1.10.19</mockito.version>
         <docker.registry></docker.registry>
-        <kafka.version>0.11.0.0</kafka.version>
+        <kafka.version>0.11.0.2</kafka.version>
 
         <!--lombok-->
         <lombok.version>1.16.18</lombok.version>
